@@ -46,3 +46,31 @@ else if (n % 2 === 0 && p < (n - p)) { // even and closer to beginning of the bo
   return Math.floor( (p / 2))
   }
 }
+
+//hikeValleyCount
+
+function countingValleys(n, s) {
+
+var arr = s.split('');
+var seaLevel = 0;
+var valleys = 0;
+    
+    for (var i = 0; i < arr.length; i++) {
+        
+        if (arr[i] === "U") {
+            seaLevel += 1;           
+        }
+        
+    else if (arr[i] === "D") { 
+            seaLevel -= 1
+     }
+        
+        if (seaLevel === - 1 && arr[i + 1] === "U") {
+            valleys += 1
+        }
+        
+        
+
+}
+    return valleys 
+}
