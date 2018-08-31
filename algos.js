@@ -18,11 +18,10 @@ var count = 0;
  
 }
 
+// pageTurn from start or end 
 
 function pageCount(n, p) {
-    /*
-     * Write your code here.
-     */
+  
 // formula = Math.floor(p / 2) or Math.floor( (n - p ) / 2)
     
  if (p === 1) { return 0}   
