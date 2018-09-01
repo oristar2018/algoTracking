@@ -74,3 +74,35 @@ var valleys = 0;
 }
     return valleys 
 }
+
+//budget for maxPair
+
+function getMoneySpent(keyboards, drives, b) {
+    
+    drives.sort( (a, b) => a - b);
+    keyboards.sort( (a, b) => a - b);
+    var arr = [];
+    
+    if (drives[0] + keyboards[0] > b) { return - 1}
+
+    for (var i = 0; i < drives.length; i++) {
+        for (var j = 0; j < keyboards.length; j++) {
+            
+            if (drives[i] + keyboards[j] <= b) { arr.push((drives[i] + keyboards[j]))}
+        }
+        
+    }
+    
+    if (drives[0] + keyboards[0] < b) {
+        return Math.max.apply(null, arr)
+    }
+
+}
+
+
+//remove duplicates
+
+    scores.reduce( (acc, val) => {
+      if (acc !== val) { newArr.push(val); return acc = val}
+    else {return acc = acc}
+    }, scores[0]);
