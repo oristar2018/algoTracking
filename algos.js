@@ -106,3 +106,18 @@ function getMoneySpent(keyboards, drives, b) {
       if (acc !== val) { newArr.push(val); return acc = val}
     else {return acc = acc}
     }, scores[0]);
+
+
+function catAndMouse(x, y, z) {
+    // z is my determining coordinate
+    //x and y are starting points
+    //i want to know Math.abs(z - x) && Math.abs(z - y)
+    
+    var distA = Math.abs(z - x);
+    var distB = Math.abs(z - y);
+    
+    if (distA === distB) { return 'Mouse C'}
+else if (distA < distB) { return 'Cat A'}
+else if (distA > distB) { return 'Cat B'}
+
+}
