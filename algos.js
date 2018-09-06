@@ -151,7 +151,7 @@ function cavityMap(grid) {
     return grid
 }
 
-//bettered version for edges up, right, down and left 
+//bettered version for edges up, right, down and left //
 
 // Complete the cavityMap function below.
 function cavityMap(grid) {
