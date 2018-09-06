@@ -121,3 +121,72 @@ else if (distA < distB) { return 'Cat A'}
 else if (distA > distB) { return 'Cat B'}
 
 }
+
+//to be bettered.
+function cavityMap(grid) {
+
+    for (var i = 0; i < grid.length; i++) {
+        
+        for (var j = 0; j < grid[i].length; j++) {
+        
+            if (
+                (parseInt(grid[i][j]) < parseInt(grid[i][j + 1]))
+                
+                &&
+                
+                (parseInt(grid[i][j + 2]) < parseInt(grid[i][j + 1]))
+            
+            ) { 
+            
+               let array = grid[i].split('');
+               array[j + 1] = "X";
+               grid[i] = array.join('')
+              
+            
+            }
+           
+        
+        }
+    }
+    return grid
+}
+
+//bettered version for edges up, right, down and left 
+
+// Complete the cavityMap function below.
+function cavityMap(grid) {
+
+    for (var i = 0; i < grid.length; i++) {
+        
+        for (var j = 0; j < grid[i].length; j++) {
+            
+            if (
+                (parseInt(grid[i][j]) < parseInt(grid[i][j + 1]))
+                
+                &&
+                
+                (parseInt(grid[i][j + 2]) < parseInt(grid[i][j + 1]))
+                
+            
+            ) { 
+                
+               if (grid[i+1] !== undefined && grid[i-1] !== undefined) {
+                   
+                   if (parseInt(grid[i+1][j+1]) < parseInt(grid[i][j+1]) && 
+                      parseInt(grid[i-1][j+1]) < parseInt(grid[i][j+1])) {
+                           let array = grid[i].split('');
+               array[j + 1] = "X";
+               grid[i] = array.join('')
+                   }
+               }
+            
+           
+              
+            
+            }
+           
+        
+        }
+    }
+    return grid
+}
