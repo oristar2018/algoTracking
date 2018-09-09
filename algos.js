@@ -190,3 +190,44 @@ function cavityMap(grid) {
     }
     return grid
 }
+
+
+//picking numbers test when they fixed input or solve in c ++  
+
+var arr = [];
+   var globalArr = [];
+    
+    for (var i = 0; i < a.length; i++) {
+    
+     a.reduce( (acc, val) => {
+        if (acc === 0 ) { return acc = acc}
+        if (Math.abs(acc - val) <= 1) { arr.push(val); return acc = acc}
+        if (Math.abs(acc - val > 1) > 1) {return acc = acc}
+    }, 0);
+    globalArr.push(arr);    
+    arr = [];
+        
+    
+        
+        
+    }
+    
+    // Complete the taumBday function below. 19/25pts. debug 11-12 solve 64 bit integers with external library
+
+function taumBday(b, w, bc, wc, z) {
+var basicFormula = (b * bc) + (w * wc);
+var formula1 = (w * wc) + (b * (z + wc));
+var formula2 = (b * bc) + (w * (z + bc));
+    
+if (bc >= wc && (z + wc) <= bc) {  return formula1 }
+else if (wc >= bc && (z + bc) <= wc) { return formula2 }
+//else if (bc === wc) { return basicFormula }
+//else if (z > bc && z > wc ) { return basicFormula}
+else { return basicFormula}
+
+
+
+}
+
+
+
