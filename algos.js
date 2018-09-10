@@ -230,4 +230,42 @@ else { return basicFormula}
 }
 
 
+//area of pdf viewer select rectangle
+
+function designerPdfViewer(h, word) {
+    // area = L * l;
+    // width:
+
+    var L = word.length;
+    
+    //l : 
+    
+    var arr = [];
+    
+    // map charcodes of the string to match array's index to find width
+    
+    let newWord = word.split('').map( (x) => {
+        return [x, (x.charCodeAt(0) - 97)]
+    });
+    
+    newWord.forEach( (item) => {
+        let letter = item[0];
+        //let letterIndex = item[1];
+        let valueToPush = [item[0], h[item[1]]];
+        arr.push(valueToPush)
+        
+    });
+    
+    arr.sort( (a, b) => { return b[1] - a[1]});
+    let l = arr[0][1];
+    let area = L * l;
+    
+    return area
+    
+    //console.log(newWord)
+    
+
+}
+
+
 
