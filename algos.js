@@ -233,16 +233,16 @@ else { return basicFormula}
 //area of pdf viewer select rectangle
 
 function designerPdfViewer(h, word) {
-    // area = L * l;
+    // area = L * w;
     // width:
 
-    var L = word.length;
+    var w = word.length;
     
-    //l : 
+    //L (length) : 
     
     var arr = [];
     
-    // map charcodes of the string to match array's index to find width
+    // map charcodes of the string to match array's index to find height
     
     let newWord = word.split('').map( (x) => {
         return [x, (x.charCodeAt(0) - 97)]
@@ -257,8 +257,8 @@ function designerPdfViewer(h, word) {
     });
     
     arr.sort( (a, b) => { return b[1] - a[1]});
-    let l = arr[0][1];
-    let area = L * l;
+    let L = arr[0][1];
+    let area = L * w;
     
     return area
     
