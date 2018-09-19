@@ -268,4 +268,61 @@ function designerPdfViewer(h, word) {
 }
 
 
+//30 poiints
+function stones(n, a, b) {
+    
+    if (a < b) {
+        var k0 = a * (n - 1);
+        var kLast = b * (n - 1);
+        var kIncrement = Math.abs(b - a);
+        var arr = [];
+        var count = k0;
+        //console.log(...arguments, a, k0)
+        //console.log('ko', k0, 'klast', kLast, 'kIncrement', kIncrement)
+    
+    for (var i = 0; i < n; i++) {
+        
+       
+        arr.push(count);
+        count = count + kIncrement;
+        
+    }}
+    
+    else if (a > b) {
+        
+        var k0 = b * (n - 1);
+        var kLast = a * (n - 1);
+        var kIncrement = Math.abs(b - a);
+        var arr = [];
+        var count = k0;
+        //console.log(...arguments, a, k0)
+        //console.log('ko', k0, 'klast', kLast, 'kIncrement', kIncrement)
+    
+    for (var i = 0; i < n; i++) {
+        
+       
+        arr.push(count);
+        count = count + kIncrement;
+        
+    }
+        
+        
+        
+        
+    }
+    
+    else if (a === b) {
+        var value = a * (n - 1);
+        var arr = [value];
+    
+       
+        
+        
+        
+        
+    }
+
+  return arr
+    
+}
 
