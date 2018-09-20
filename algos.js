@@ -326,3 +326,81 @@ function stones(n, a, b) {
     
 }
 
+// Complete the happyLadybugs function below.
+
+function happyLadybugs(b) {
+    
+    var arr = b.split('');
+    var arr1 = [];
+    var arr2 = [];
+    var count = 0;
+    var count1 = 0;
+    var countPairs = 0;
+    var underscore = "_";
+ 
+    // creating an array of charcodes 
+    
+    for (var i = 0; i < arr.length; i++) {
+        
+        if ( arr[i] === "_" ) { count += 1 }
+
+        // if array of underscores 
+
+        if (count === arr.length) { return "YES"}
+        
+        arr1.push(arr[i].charCodeAt(0));
+        
+        
+        
+        
+        
+        
+    }
+    
+    // sorting and removing the underscores
+   
+    
+   arr1.sort( (a, b) => a - b);
+   arr2 = arr1.filter( (x) => { return x !== 95})
+  
+    
+  for (var j = 0; j < arr2.length; j++) {
+      
+        //determining if single character? 
+
+      if ( (arr2[j - 1] !== arr2[j]) && (arr2[j + 1] !== arr2[j]) ) {
+          
+          count1 += 1;
+          
+          
+      }
+      
+      // counting Pairs 
+
+      if ( arr2[j] === arr2[j + 1]) {
+          
+          countPairs += 1;
+          
+          
+      }
+      
+      
+      
+      
+  }
+
+  // incrementing for the last character if single
+   
+   if (arr2[(arr2.length - 1) - 1] !== arr2[arr2.length - 1] ) { count1 += 1 }
+    
+    // compiled possibilities according to counters
+
+   if (count1 > 0) { return "NO" }
+else if ( count === 0 && (arr[0] !== arr[1])) { console.log(arr[0], arr[1]); return "NO"}
+else if (count === 0 && (countPairs >= arr2.length / 2)) { return "YES"}
+else if (count === 0) { console.log(countPairs); return "NO"}
+   else { return "YES" }
+    
+  
+}
+
