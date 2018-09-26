@@ -404,3 +404,75 @@ else if (count === 0) { console.log(countPairs); return "NO"}
   
 }
 
+
+//count permutations and maxes trough array comparison/generation 
+
+function acmTeam(topic) {
+   var i = 1;
+   var globalArr = [];
+    
+    topic.forEach( (item) => {
+        
+        //item.split('');
+        //console.log(item, i)
+        
+       
+        for (var x = i; x < topic.length; x++) {
+            var arr = [];
+            
+            for (var j = 0; j < topic[x].length; j++) {
+                
+                
+               if (parseInt(item[j]) === 1) {
+                   
+                   arr.push(1)
+               }
+                
+              else if ( (topic[x] !== undefined) && (parseInt(item[j])) === 0 && (parseInt(topic[x][j]) === 1)) {
+                  
+                  
+                  arr.push(1)
+              }
+                
+            else if (( topic[x] !== undefined)  && (parseInt(topic[x][j]) === 0)) {
+                
+                arr.push(0)
+            }
+                
+            
+                
+                
+                
+                
+            }
+              if (arr !== undefined) {globalArr.push(arr);} 
+        }
+        
+       
+        i += 1
+      
+    })
+    
+ 
+    var newArr = globalArr.map( (x) => {
+        
+        return x.reduce( (acc, val) => {
+            
+            
+            return acc + val
+            
+        }, 0)
+        
+        
+    }).sort( (a, b) => b - a );
+    
+    var countTeams = 0;
+    
+    let filtered = newArr.filter( (item) => { return item === newArr[0]});
+    
+    var output = [newArr[0], filtered.length];
+    
+    return output
+    
+}
+
