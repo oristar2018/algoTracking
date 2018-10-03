@@ -1,4 +1,38 @@
+function kaprekarNumbers(p, q) {
+    var arr = [p];
 
+    if (p === 1) { arr = [1]}
+    else { arr = arr};
+
+    for (var i = p; i <= q; i++) {
+            
+        
+        let Str = Math.pow(i, 2).toString();
+        let I = i.toString();
+        let p1 = parseInt(Str.slice(0, (Str.length - I.length)));
+        let p2 = parseInt(Str.slice(-(I.length)));
+        
+        if ((p1 + p2) === i) {
+            
+            arr.push(i)
+            
+            
+        }
+      
+        
+        
+        
+    };
+    
+    if (arr.length > 2) {
+       console.log(arr.join(' '))
+    }
+    
+    else {
+       console.log("INVALID RANGE")
+    }
+
+}
 
 
 
