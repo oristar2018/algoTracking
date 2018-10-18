@@ -1,92 +1,199 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
+// Complete the flatlandSpaceStations function below.
 
+function superReducedString(s) {
+  let s1 = s.split("");
+  var count = 0;
 
+  for (var j = 0; j < s1.length*s1.length; j++) {
+    for (var i = 0; i < s1.length; i++) {
+      if (s1[i] === s1[i + 1]) {
+        s1.splice(i, 2);
+        i -= 1;
+      }
+
+      if (i === s1.length - 1) {
+        count++;
+      }
+    }
+  }
+
+  if (s1.length < 2) {
+    return "Empty String";
+  } else {
+    return s1.join("");
+  }
+}
+
+function flatlandSpaceStations(n, c) {
+  var arr1 = [];
+  if (n === c.length) {
+    return 0;
+  }
+
+  c.unshift(0);
+  c.push(n - 1);
+  let s = new Set(c);
+  let arr = Array.from(s).sort((a, b) => a - b);
+  //console.log(arr)
+
+  arr.reduce((acc, val, currentIndex) => {
+    if (currentIndex === 0) {
+      return (acc = val);
+    } else {
+      arr1.push(Math.abs(acc - val));
+      return (acc = val);
+    }
+  }, 0);
+  console.log(arr, arr1);
+  //arr1.sort((a,b) => a - b);
+  let max = Math.max.apply(null, arr1);
+  let edg1 = arr1[0];
+  let edg2 = arr1[arr1.length - 1];
+  console.log(max);
+  if (max === 4) {
+    return 2;
+  } else if (max / 2 < edg1 && edg1 > edg2) {
+    return edg1;
+  } else if (max / 2 < edg2 && edg2 > edg1) {
+    return edg2;
+  } else if (max === edg2) {
+    return max;
+  } else if (max === edg1) {
+    return max;
+  } else {
+    return Math.floor(max / 2);
+  }
+  return max;
+}
+
+function workbook(n, k, arr) {
+  var currentPage = 1;
+  var count = 0;
+  var m = 1;
+
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j <= arr[i]; j++) {
+      if (j === 1 && currentPage === 0) {
+        count++;
+      } else if (j === currentPage && currentPage !== 0) {
+        count++;
+        console.log(j);
+      }
+
+      if (j === arr[i] && j <= k) {
+        currentPage++;
+        console.log("currentInf", currentPage);
+      } else if (j === arr[i] && j > (m - 1) * k && j < m * k) {
+        currentPage++;
+        console.log("currentArri", currentPage);
+      } else if (j === m * k) {
+        currentPage++;
+        m++;
+        console.log("currentMulti", currentPage);
+      }
+
+      if (j === arr[i]) {
+        m = 1;
+      }
+    }
+  }
+
+  return count;
+}
+
+function findDigits(n) {
+  var count = 0;
+
+  var N = n.toString().split("");
+
+  N.forEach(item => (n % item === 0 ? count++ : console.log("no")));
+
+  return count;
+}
 //matrix rotation
 
 function matrixRotation(matrix, r) {
-//console.log(matrix, r)
- var m = matrix.length;
- var n  = matrix[0].length;
- var formula = ((2 * m) + (2 * n)); 
- 
-    
-    if (r > formula) { r = r % (formula2 - 3)}
+  //console.log(matrix, r)
+  var m = matrix.length;
+  var n = matrix[0].length;
+  var formula = 2 * m + 2 * n;
 
-    for (var g = 0; g < r; g++) {
-   
+  if (r > formula) {
+    r = r % (formula2 - 3);
+  }
+
+  for (var g = 0; g < r; g++) {
     var v = 0;
     var x = 1;
-    
-    
-  
-   for (var c = matrix.length; c > 2; c -= 2) {
-    var topLeft = matrix[v][v];
-    var topRight = matrix[v][ n - x];
-    
-    var bottomLeft = matrix[m - x][v];
-    var bottomRight = matrix[m - x][n - x];
-    
-    var arrSave = [];
-    
-    // here you must push the value to be spliced somewhere 
-    arrSave.push(matrix[v][v]);
-    matrix[v].splice(v, 1);
-    
-    
-    matrix[v].splice(n - x, 1, matrix[v + 1][n - x]);
-    
-    // here you must push the value to be spliced somewhere
-    //console.log(matrix[m-x])
-    
-    arrSave.push(matrix[m-x][n-x]);
-    matrix[m - x].pop();
-    matrix[m - x].unshift(matrix[m - (x + 1)][v]);
-   //console.log(matrix)
-    for (var i = v + 1; i < (m - x); i++) {
-        
-       if (i === (v + 1)) { matrix[i + 1][0] = matrix[i][0]; matrix[i][0] = arrSave[0]; matrix[i][n - x] = matrix[i + 1][n - x]}
-    else if (i === (m - x) - 1) {  matrix[i][n -x] = arrSave[1] }
-        
-   else {
-       matrix[i][0] = matrix[i - 1][0];
-       matrix[i][n - x] = matrix[i + 1][n - x]
-       
-   }
-        
-        
-    }    
+
+    for (var c = matrix.length; c > 2; c -= 2) {
+      var topLeft = matrix[v][v];
+      var topRight = matrix[v][n - x];
+
+      var bottomLeft = matrix[m - x][v];
+      var bottomRight = matrix[m - x][n - x];
+
+      var arrSave = [];
+
+      // here you must push the value to be spliced somewhere
+      arrSave.push(matrix[v][v]);
+      matrix[v].splice(v, 1);
+
+      matrix[v].splice(n - x, 1, matrix[v + 1][n - x]);
+
+      // here you must push the value to be spliced somewhere
+      //console.log(matrix[m-x])
+
+      arrSave.push(matrix[m - x][n - x]);
+      matrix[m - x].pop();
+      matrix[m - x].unshift(matrix[m - (x + 1)][v]);
+      //console.log(matrix)
+      for (var i = v + 1; i < m - x; i++) {
+        if (i === v + 1) {
+          matrix[i + 1][0] = matrix[i][0];
+          matrix[i][0] = arrSave[0];
+          matrix[i][n - x] = matrix[i + 1][n - x];
+        } else if (i === m - x - 1) {
+          matrix[i][n - x] = arrSave[1];
+        } else {
+          matrix[i][0] = matrix[i - 1][0];
+          matrix[i][n - x] = matrix[i + 1][n - x];
+        }
+      }
 
       v += 1;
-      x += 1
-   }
-    
-    if (c === 2 ) {
-        
-        let tempArr = [matrix[v][v], matrix[m - x][v], matrix[m - x][n - x], matrix[v][ n - x]];
-        
-        matrix[v][v] = tempArr[3];
-        matrix[m - x][v] = tempArr[0];
-        matrix[m - x][n - x] = tempArr[1];
-         matrix[v][ n - x] = tempArr[2];
-        
-        //console.log(tempArr)
-        
-        
+      x += 1;
     }
+
+    if (c === 2) {
+      let tempArr = [
+        matrix[v][v],
+        matrix[m - x][v],
+        matrix[m - x][n - x],
+        matrix[v][n - x]
+      ];
+
+      matrix[v][v] = tempArr[3];
+      matrix[m - x][v] = tempArr[0];
+      matrix[m - x][n - x] = tempArr[1];
+      matrix[v][n - x] = tempArr[2];
+
+      //console.log(tempArr)
     }
-   
-    //console.log(matrix)
+  }
+
+  //console.log(matrix)
   for (var h = 0; h < matrix.length; h++) {
-    
-        
-            console.log(matrix[h].join(',').split(',').join(' '))
-            
-        
-    }
-   
-   // console.log(/*matrix[v], matrix[m - x],*/ matrix)
- 
-    
+    console.log(
+      matrix[h]
+        .join(",")
+        .split(",")
+        .join(" ")
+    );
+  }
+
+  // console.log(/*matrix[v], matrix[m - x],*/ matrix)
 }
 // Complete the encryption function below.
 function encryption(s) {
