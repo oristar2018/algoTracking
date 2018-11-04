@@ -1,6 +1,24 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+function camelcase(s) {
+    //count starts at one because there is one initial lowcase word
+    var count = 1;
+    // forEach item in the array we count the number of uppercases
+    let arr = s.split('').forEach((item) => {
+        if ( item.charCodeAt(0) > 64  &&  item.charCodeAt(0) <= 91) { console.log(item.charCodeAt(0), count); count ++}
+        
+        
+        
+    });
+    
+    return count
+
+
+
+
+}
+
 function superReducedString(s) {
   let s1 = s.split("");
   var count = 0;
