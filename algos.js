@@ -1,29 +1,119 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+function alternate(s) {
+  var ns = new Set(s);
+  var arr = Array.from(ns);
+  var s1 = arr.join("");
+  //console.log(arr, s1);
+  var regexes = [];
+  var tArr = [];
+
+  for (var i = 0; i < s1.length; i++) {
+    for (let j = 0; j < s1.length; j++) {
+      if (s1[j + 1] !== undefined) {
+        let str = "[" + s1[i] + s1[j + 1] + "]";
+        let reg = new RegExp(str, "g");
+        regexes.push(reg);
+      }
+    }
+  }
+  //console.log(regexes)
+
+  regexes.forEach(item => {
+    //console.log(s.match(item));
+    if (s.match(item) !== null) {
+      tArr.push(s.match(item));
+    }
+  });
+
+  //console.log(tArr);
+
+  var tArr1 = tArr.sort((a, b) => b.length - a.length);
+  var tArr2 = tArr1; //.filter((item) => {return item.length === tArr[0].length});
+  if (tArr[0] !== undefined) {
+    var l = tArr[0].join("");
+  }
+  var cutArr = [];
+  var sumCutArr = [];
+  var count = 0;
+  console.log(tArr2);
+
+  for (var k = 0; k < tArr2.length; k++) {
+    count = 0;
+    for (var z = 0; z < tArr2[k].length; z++) {
+      if (z === tArr2[k].length - 1 && count === 0) {
+        sumCutArr.push(tArr2[k]);
+      } else if (
+        tArr2[k][z] === tArr2[k][z + 1] &&
+        tArr2[k][z + 1] !== undefined
+      ) {
+        count++;
+      }
+    }
+  }
+
+  if (sumCutArr !== undefined) {
+    if (sumCutArr[0] !== undefined && sumCutArr[0].length >= 4) {
+      return sumCutArr[0].length;
+    } else if (sumCutArr[0] !== undefined && sumCutArr[0].length === 2) {
+      return sumCutArr[0].length;
+    } else {
+      return 0;
+    }
+  } else {
+    return 0;
+  }
+}
+
+function minimumNumber(n, password) {
+  // Return the minimum number of characters to make the password strong
+
+  var specialReg = new RegExp(/[!@#$%^&*()\-+]/);
+  var length = 6;
+  var numReg = new RegExp(/[\d\s]+/, "g");
+  var upperCaseReg = new RegExp(/[A-Z\s]+/, "g");
+  var lowerCase = new RegExp(/[a-z\s]+/, "g");
+  var min = 0;
+
+  if (upperCaseReg.test(password) !== true) {
+    min++;
+  }
+  if (lowerCase.test(password) !== true) {
+    min++;
+  }
+  if (numReg.test(password) !== true) {
+    min++;
+  }
+  if (specialReg.test(password) !== true) {
+    min++;
+  }
+  if (password.length + min < 6) {
+    min += 6 - (password.length + min);
+  }
+
+  return min;
+}
+
 function camelcase(s) {
-    //count starts at one because there is one initial lowcase word
-    var count = 1;
-    // forEach item in the array we count the number of uppercases
-    let arr = s.split('').forEach((item) => {
-        if ( item.charCodeAt(0) > 64  &&  item.charCodeAt(0) <= 91) { console.log(item.charCodeAt(0), count); count ++}
-        
-        
-        
-    });
-    
-    return count
+  //count starts at one because there is one initial lowcase word
+  var count = 1;
+  // forEach item in the array we count the number of uppercases
+  let arr = s.split("").forEach(item => {
+    if (item.charCodeAt(0) > 64 && item.charCodeAt(0) <= 91) {
+      console.log(item.charCodeAt(0), count);
+      count++;
+    }
+  });
 
-
-
-
+  return count;
 }
 
 function superReducedString(s) {
   let s1 = s.split("");
   var count = 0;
 
-  for (var j = 0; j < s1.length*s1.length; j++) {
+  for (var j = 0; j < s1.length * s1.length; j++) {
     for (var i = 0; i < s1.length; i++) {
       if (s1[i] === s1[i + 1]) {
         s1.splice(i, 2);
