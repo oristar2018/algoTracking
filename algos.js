@@ -1,6 +1,50 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+function caesarCipher(s, k) {
+
+    var t1 = new RegExp(/[A-Z]/);
+    var t = new RegExp(/[a-z]/);
+    
+    //we negate one to aA values to include them in the diff calc
+    var a = 96;
+    var A = 64;
+    while (k >= 26) { k = (k - 26) };
+    s = s.split('');
+    
+    for (var i = 0; i < s.length; i++) {
+        
+        if (t.test(s[i]) === true) {
+            
+            let c = s[i].charCodeAt(0);
+            let diff = 122 - c;
+            let val = a + (k - diff);
+            
+            (k <= diff) ? s[i] = String.fromCharCode(c + k) :  s[i] = String.fromCharCode(val);
+           
+           
+            
+        }
+        
+       else if (t1.test(s[i]) === true) {
+          
+           let c = s[i].charCodeAt(0);
+           console.log(c)
+            let diff = 90 - c;
+            let val = A + (k - diff);
+           
+            (k <= diff) ? s[i] = String.fromCharCode(c + k) :  s[i] = String.fromCharCode(val);
+           
+            //console.log(s[i]);
+        }
+        
+        
+    }
+   
+   return s.join('')
+}
+
+
 function alternate(s) {
   var ns = new Set(s);
   var arr = Array.from(ns);
