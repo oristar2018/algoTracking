@@ -1,6 +1,26 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+
+function marsExploration(s) {
+    
+    var r = new RegExp(/sos/);
+    var str = "SOS";
+    var count = 0;
+    for (var i = 0; i < s.length; i+=3) {
+        
+       // if (r.test(s[i]) !== true) { count++}
+        if (s[i] !== "S") {count++}
+        if (s[i + 1] !== "O") {count++}
+        if (s[i + 2] !== "S") {count++}
+        
+    }
+    
+    return count
+
+}
+
+
 function caesarCipher(s, k) {
 
     var t1 = new RegExp(/[A-Z]/);
