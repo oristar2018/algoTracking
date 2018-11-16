@@ -2,68 +2,187 @@
 // Complete the flatlandSpaceStations function below.
 
 
-function marsExploration(s) {
+function jumpingOnClouds(c) {
+var count = 0;
+var l = c.length;
+var x 
+for (var i = 0; i < l; i+=x) {
+     if (c[i] === 0 && c[i+1] === 0 && c[i+2] === undefined) { count ++}
+    else if (c[i] === 0 && c[i+1] === 1 ) { count ++; x = 2; continue;}
+    else if (c[i] === 0 && c[i+1] === 0 && c[i +2] === 1) { count++; x = 1; continue;}
+    else if (c[i] === 0 && c[i+1] === 0 && c[i +2] === 0) { count++; x = 2; continue;}
     
-    var r = new RegExp(/sos/);
-    var str = "SOS";
-    var count = 0;
-    for (var i = 0; i < s.length; i+=3) {
-        
-       // if (r.test(s[i]) !== true) { count++}
-        if (s[i] !== "S") {count++}
-        if (s[i + 1] !== "O") {count++}
-        if (s[i + 2] !== "S") {count++}
-        
-    }
+    
+}
     
     return count
-
+    
 }
 
+// Complete the rotLeft function below.
+function rotLeft(a, d) {
 
-function caesarCipher(s, k) {
+    let mod = d % a.length;
+    let l = a.length - 1;
+    var val1 = 0;
+    //var val2 = 0;
 
-    var t1 = new RegExp(/[A-Z]/);
-    var t = new RegExp(/[a-z]/);
-    
-    //we negate one to aA values to include them in the diff calc
-    var a = 96;
-    var A = 64;
-    while (k >= 26) { k = (k - 26) };
-    s = s.split('');
-    
-    for (var i = 0; i < s.length; i++) {
-        
-        if (t.test(s[i]) === true) {
-            
-            let c = s[i].charCodeAt(0);
-            let diff = 122 - c;
-            let val = a + (k - diff);
-            
-            (k <= diff) ? s[i] = String.fromCharCode(c + k) :  s[i] = String.fromCharCode(val);
+    for (var i = 0; i < mod; i++) {
+        val1 = a[0];
+        //val2 = a[l-1];
+        //console.log(a);
+        for (var j = 0; j < a.length; j++) {
+            //console.log(a)
            
-           
+             if ( j === (l)) {a[j - 1 ] = a[j]; a[j] = val1}
+            else { a[j - 1 ] = a[j]}
             
         }
-        
-       else if (t1.test(s[i]) === true) {
-          
-           let c = s[i].charCodeAt(0);
-           console.log(c)
-            let diff = 90 - c;
-            let val = A + (k - diff);
-           
-            (k <= diff) ? s[i] = String.fromCharCode(c + k) :  s[i] = String.fromCharCode(val);
-           
-            //console.log(s[i]);
-        }
-        
         
     }
-   
-   return s.join('')
+    
+    
+    //console.log(a.join(''));
+    return a
+
 }
 
+function hackerrankInString(s) {
+  let aS = s.split("");
+  let S = new Set(s);
+  var r = new RegExp(/hackerrank/, i);
+  let aS2 = [];
+  var count = 0;
+  var count2 = 0;
+  var track = "h";
+
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] === "r") {
+      count++;
+    }
+  }
+  if (count < 2) {
+    return "NO";
+  } else if (count >= 2) {
+    for (var j = 0; j < aS.length; j++) {
+      if (aS[j] === "h" && count2 === 0) {
+        aS2.push(track);
+        track = "a";
+        count2++;
+      }
+      if (aS[j] === "a" && track === "a" && count2 === 1) {
+        aS2.push(track);
+        track = "c";
+        count2++;
+        track = "c";
+      }
+      if (aS[j] === track && (track === "c" && count2 === 2)) {
+        aS2.push(track);
+        track = "k";
+        count2++;
+      }
+      if (aS[j] === track && (track === "k" && count2 === 3)) {
+        aS2.push(track);
+        track = "e";
+        count2++;
+      }
+      if (aS[j] === track && (track === "e" && count2 === 4)) {
+        aS2.push(track);
+        track = "r";
+        count2++;
+      }
+      if (aS[j] === track && (track === "r" && count2 === 5)) {
+        aS2.push(track);
+        track = "r";
+        j += 1;
+        count2++;
+      }
+      if (count2 === 6 && aS[j] === "r" && track === "r") {
+        aS2.push(track);
+        track = "a";
+        count2++;
+      }
+      if (aS[j] === track && (track === "a" && count2 === 7)) {
+        aS2.push(track);
+        track = "n";
+        count2++;
+      }
+      if (aS[j] === track && (track === "n" && count2 === 8)) {
+        aS2.push(track);
+        track = "k";
+        count2++;
+      }
+      if (aS[j] === track && (track === "k" && count2 === 9)) {
+        aS2.push(track);
+        track = "k";
+      }
+    }
+
+    if (r.test(aS2.join(""))) {
+      return "YES";
+    } else {
+      return "NO";
+    }
+  }
+}
+
+function marsExploration(s) {
+  var r = new RegExp(/sos/);
+  var str = "SOS";
+  var count = 0;
+  for (var i = 0; i < s.length; i += 3) {
+    // if (r.test(s[i]) !== true) { count++}
+    if (s[i] !== "S") {
+      count++;
+    }
+    if (s[i + 1] !== "O") {
+      count++;
+    }
+    if (s[i + 2] !== "S") {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+function caesarCipher(s, k) {
+  var t1 = new RegExp(/[A-Z]/);
+  var t = new RegExp(/[a-z]/);
+
+  //we negate one to aA values to include them in the diff calc
+  var a = 96;
+  var A = 64;
+  while (k >= 26) {
+    k = k - 26;
+  }
+  s = s.split("");
+
+  for (var i = 0; i < s.length; i++) {
+    if (t.test(s[i]) === true) {
+      let c = s[i].charCodeAt(0);
+      let diff = 122 - c;
+      let val = a + (k - diff);
+
+      k <= diff
+        ? (s[i] = String.fromCharCode(c + k))
+        : (s[i] = String.fromCharCode(val));
+    } else if (t1.test(s[i]) === true) {
+      let c = s[i].charCodeAt(0);
+      console.log(c);
+      let diff = 90 - c;
+      let val = A + (k - diff);
+
+      k <= diff
+        ? (s[i] = String.fromCharCode(c + k))
+        : (s[i] = String.fromCharCode(val));
+
+      //console.log(s[i]);
+    }
+  }
+
+  return s.join("");
+}
 
 function alternate(s) {
   var ns = new Set(s);
