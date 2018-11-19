@@ -2,6 +2,39 @@
 // Complete the flatlandSpaceStations function below.
 
 
+
+function repeatedString(s, n) {
+    var count = 0;
+    var count2 = 0;
+    var l = s.length;
+
+    // count number of a's is s
+    for (var i = 0; i < s.length; i++) {
+
+        if (s[i] === "a") { count++}
+    };
+
+
+    // how many full s are in n ;
+
+    var aIn = Math.floor(n / l);
+    var rC = (n % l);
+    var countEven = count * aIn;
+   // count remaining a's
+
+    for (var j = 0; j < rC; j++) {
+
+        if (s[j] === "a") {
+           count2++
+       }
+    } 
+
+   return countEven + count2
+
+
+}
+
+
 function jumpingOnClouds(c) {
 var count = 0;
 var l = c.length;
