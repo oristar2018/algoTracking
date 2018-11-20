@@ -1,7 +1,19 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+// Complete the pangrams function below.
+function pangrams(s) {
+    var s1 = s.toLowerCase().split('');
+    var Reg = new RegExp(/[\w*]/);
+    var S = new Set(s1);
+    var aS = Array.from(S);
+    var aS2 = aS.filter((item) => Reg.test(item));
+    var l = aS2.length;
 
+    if (l === 26) { return 'pangram' }
+    else { return 'not pangram'}
+
+}
 
 function repeatedString(s, n) {
     var count = 0;
