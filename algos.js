@@ -1,6 +1,28 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+// Complete the maximumToys function below.
+function maximumToys(prices, k) {
+    var count = 0;
+    var count1 = 0;
+
+    prices.sort((a, b) => a - b);
+
+    for (var i = 0; i < prices.length; i++) {
+
+        if ((count1 <= k) && (prices[i] < k) && ((count1 + prices[i]) < k)) {
+            
+            count++;
+            count1 += prices[i]
+
+           
+        }
+       
+    }
+  
+return count
+
+}
 // Complete the pangrams function below.
 function pangrams(s) {
     var s1 = s.toLowerCase().split('');
