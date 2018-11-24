@@ -1,117 +1,149 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 
+// Complete the minimumBribes function below.
+function minimumBribes(q) {
+  var count = 0;
+
+  var q2 = q.map(x => [x, 0]);
+
+  for (let k = 0; k < 50; k++) {
+    for (let i = 0; i < q2.length; i++) {
+      if (
+        q2[i + 1] !== undefined &&
+        q2[i + 1][0] !== undefined &&
+        q2[i + 1][1] !== undefined &&
+        q2[i][0] > q2[i + 1][0] &&
+        q2[i][1] < 2
+      ) {
+        q2[i][1] += 1;
+        q2.splice(i, 2, q2[i + 1], q2[i]);
+        count++;
+      }
+    }
+  }
+
+  var q4 = q2.map(x => x[0]);
+  var q5 = q.sort((a, b) => a - b);
+
+  if (q4.join("") === q5.join("")) {
+    console.log(count);
+  } else {
+    console.log("Too chaotic");
+  }
+
+  return count;
+}
 // Complete the maximumToys function below.
 function maximumToys(prices, k) {
-    var count = 0;
-    var count1 = 0;
+  var count = 0;
+  var count1 = 0;
 
-    prices.sort((a, b) => a - b);
+  prices.sort((a, b) => a - b);
 
-    for (var i = 0; i < prices.length; i++) {
-
-        if ((count1 <= k) && (prices[i] < k) && ((count1 + prices[i]) < k)) {
-            
-            count++;
-            count1 += prices[i]
-
-           
-        }
-       
+  for (var i = 0; i < prices.length; i++) {
+    if (count1 <= k && prices[i] < k && count1 + prices[i] < k) {
+      count++;
+      count1 += prices[i];
     }
-  
-return count
+  }
 
+  return count;
 }
 // Complete the pangrams function below.
 function pangrams(s) {
-    var s1 = s.toLowerCase().split('');
-    var Reg = new RegExp(/[\w*]/);
-    var S = new Set(s1);
-    var aS = Array.from(S);
-    var aS2 = aS.filter((item) => Reg.test(item));
-    var l = aS2.length;
+  var s1 = s.toLowerCase().split("");
+  var Reg = new RegExp(/[\w*]/);
+  var S = new Set(s1);
+  var aS = Array.from(S);
+  var aS2 = aS.filter(item => Reg.test(item));
+  var l = aS2.length;
 
-    if (l === 26) { return 'pangram' }
-    else { return 'not pangram'}
-
+  if (l === 26) {
+    return "pangram";
+  } else {
+    return "not pangram";
+  }
 }
 
 function repeatedString(s, n) {
-    var count = 0;
-    var count2 = 0;
-    var l = s.length;
+  var count = 0;
+  var count2 = 0;
+  var l = s.length;
 
-    // count number of a's is s
-    for (var i = 0; i < s.length; i++) {
+  // count number of a's is s
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] === "a") {
+      count++;
+    }
+  }
 
-        if (s[i] === "a") { count++}
-    };
+  // how many full s are in n ;
 
+  var aIn = Math.floor(n / l);
+  var rC = n % l;
+  var countEven = count * aIn;
+  // count remaining a's
 
-    // how many full s are in n ;
+  for (var j = 0; j < rC; j++) {
+    if (s[j] === "a") {
+      count2++;
+    }
+  }
 
-    var aIn = Math.floor(n / l);
-    var rC = (n % l);
-    var countEven = count * aIn;
-   // count remaining a's
-
-    for (var j = 0; j < rC; j++) {
-
-        if (s[j] === "a") {
-           count2++
-       }
-    } 
-
-   return countEven + count2
-
-
+  return countEven + count2;
 }
-
 
 function jumpingOnClouds(c) {
-var count = 0;
-var l = c.length;
-var x 
-for (var i = 0; i < l; i+=x) {
-     if (c[i] === 0 && c[i+1] === 0 && c[i+2] === undefined) { count ++}
-    else if (c[i] === 0 && c[i+1] === 1 ) { count ++; x = 2; continue;}
-    else if (c[i] === 0 && c[i+1] === 0 && c[i +2] === 1) { count++; x = 1; continue;}
-    else if (c[i] === 0 && c[i+1] === 0 && c[i +2] === 0) { count++; x = 2; continue;}
-    
-    
-}
-    
-    return count
-    
+  var count = 0;
+  var l = c.length;
+  var x;
+  for (var i = 0; i < l; i += x) {
+    if (c[i] === 0 && c[i + 1] === 0 && c[i + 2] === undefined) {
+      count++;
+    } else if (c[i] === 0 && c[i + 1] === 1) {
+      count++;
+      x = 2;
+      continue;
+    } else if (c[i] === 0 && c[i + 1] === 0 && c[i + 2] === 1) {
+      count++;
+      x = 1;
+      continue;
+    } else if (c[i] === 0 && c[i + 1] === 0 && c[i + 2] === 0) {
+      count++;
+      x = 2;
+      continue;
+    }
+  }
+
+  return count;
 }
 
 // Complete the rotLeft function below.
 function rotLeft(a, d) {
+  let mod = d % a.length;
+  let l = a.length - 1;
+  var val1 = 0;
+  //var val2 = 0;
 
-    let mod = d % a.length;
-    let l = a.length - 1;
-    var val1 = 0;
-    //var val2 = 0;
+  for (var i = 0; i < mod; i++) {
+    val1 = a[0];
+    //val2 = a[l-1];
+    //console.log(a);
+    for (var j = 0; j < a.length; j++) {
+      //console.log(a)
 
-    for (var i = 0; i < mod; i++) {
-        val1 = a[0];
-        //val2 = a[l-1];
-        //console.log(a);
-        for (var j = 0; j < a.length; j++) {
-            //console.log(a)
-           
-             if ( j === (l)) {a[j - 1 ] = a[j]; a[j] = val1}
-            else { a[j - 1 ] = a[j]}
-            
-        }
-        
+      if (j === l) {
+        a[j - 1] = a[j];
+        a[j] = val1;
+      } else {
+        a[j - 1] = a[j];
+      }
     }
-    
-    
-    //console.log(a.join(''));
-    return a
+  }
 
+  //console.log(a.join(''));
+  return a;
 }
 
 function hackerrankInString(s) {
