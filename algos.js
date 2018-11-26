@@ -1,5 +1,17 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
+// Complete the angryProfessor function below.
+function angryProfessor(k, a) {
+    var count = 0;
+    for (var i = 0; i < a.length; i++) {
+
+        if (a[i] < 0 || a[i] === 0) { count++}
+
+    };
+    
+    if (count < k) { return 'YES' }
+    else { return 'NO'}
+}
 
 // Complete the minimumBribes function below.
 function minimumBribes(q) {
