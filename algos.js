@@ -1,6 +1,131 @@
 //slice, substr is always from to even minus - substr reverses order is end > start
 // Complete the flatlandSpaceStations function below.
 // Complete the angryProfessor function below.
+
+// ^ operator solution 
+
+function maximizingXor(l, r) {
+    
+    var zero = "0";
+    var one = "1";
+    var results = [];
+    // r > l
+    for (var i = l; i < (r + 1 ); i++) {
+
+        for (var j = l; j < (r + 1); j++) {
+
+            results.push(i ^ j)
+
+        }
+
+    }
+
+    var n = results.sort((a, b) => b - a);
+    return n[0] 
+}
+
+
+// non ^ operator solution
+function maximizingXor(l, r) {
+    
+    var zero = "0";
+    var one = "1";
+    var results = [];
+   
+    for (var i = l; i < (r + 1 ); i++) {
+
+        for (var j = l; j < (r + 1); j++) {
+
+            var bitsI = i.toString(2);
+            var bitsJ = j.toString(2);
+            bitsI.split('');
+            bitsJ.split('')
+            var length;
+        
+            if (bitsI.length === bitsJ.length) {
+                length = bitsI.length;
+                var result = [];
+                for (var x = 0; x < length; x++) {
+                 
+                    
+        
+                       if (bitsI[x] === bitsJ[x]) { result.push(zero); }
+                    else  { result.push(one);}
+
+                } 
+                
+                let resString = result.join('');
+              
+                results.push(parseInt(resString, 2));
+
+
+            }
+
+            else {
+                //unequal variation + 1 step (max 10*3) and + 1 final result since it's doing previous max * 2 + 1 or previous max + (previous max + 1)
+                length = bitsI.length;
+                var result = [];
+                for (var x = 0; x < length + 1; x++) {
+                
+                    if (bitsI[x] === bitsJ[x]) { result.push(zero); }
+                    else { result.push(one); }
+
+                }
+                //console.log(result.join(''))
+                let resString = result.join('');
+               
+                results.push((parseInt(resString, 2) + 1));
+
+
+    
+            }
+
+        }
+
+    }
+
+    var n = results.sort((a, b) => b - a);
+    return n[0] 
+}
+
+function utopianTree(n) {
+    var H = 1;
+    
+    if (n === 0) { return 1 }
+
+    else {
+        for (var i = 1; i < (n + 1); i++) {
+
+            if (i % 2 === 0) {
+                H += 1;
+
+            }
+            else if (i % 2 !== 0) {
+
+                H *= 2;
+
+            }
+
+        };
+
+
+        return H
+    }
+
+}
+
+function hurdleRace(k, height) {
+    
+    var hurdleMaxHeight = Math.max.apply(null, height);
+    if (hurdleMaxHeight <= k) { return 0 }
+
+    else if (hurdleMaxHeight > k) {
+        var minDose = hurdleMaxHeight - k;
+        return minDose
+
+    }
+}
+
 function angryProfessor(k, a) {
     var count = 0;
     for (var i = 0; i < a.length; i++) {
