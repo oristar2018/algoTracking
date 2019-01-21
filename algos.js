@@ -2,6 +2,54 @@
 // Complete the flatlandSpaceStations function below.
 // Complete the angryProfessor function below.
 
+function gemstones(arr) {
+  
+    var gemStones = 0;
+    var count = 0;
+    var arr2 = [];
+    for (var i = 0; i < arr.length; i++) {
+
+        let n = new Set(arr[i]);
+        n = Array.from(n);
+        n = n.join('');
+        arr2.push(n)
+
+    };
+
+    arr2 = arr2.join('').split('');
+    arr2 = arr2.sort((a, b) => {
+
+        return a.charCodeAt(0) - b.charCodeAt(0)
+
+    });
+
+
+    for (var j = 0; j < arr2.length; j++) {
+      
+        if (count === (arr.length-1) && arr2[j + 1] !== undefined && arr2[j] !== arr2[j + 1] ) {
+            gemStones++;
+            count = 0;
+        }
+       else if (arr2[j + 1] !== undefined && arr2[j] !== arr2[j + 1]) {
+            
+            count = 0;
+
+        }
+       else if (arr2[j + 1] !== undefined && arr2[j] === arr2[j + 1]) {
+
+            count++;
+            
+        }
+
+    };
+
+    
+  return gemStones 
+    
+
+}
+
+
 // Complete the funnyString function below.
 function funnyString(s) {
   let S = [...s.split("")];
