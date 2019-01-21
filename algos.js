@@ -2,140 +2,150 @@
 // Complete the flatlandSpaceStations function below.
 // Complete the angryProfessor function below.
 
-// ^ operator solution 
+// Complete the funnyString function below.
+function funnyString(s) {
+  let S = [...s.split("")];
+  let S1 = [...s.split("")];
 
-function maximizingXor(l, r) {
-    
-    var zero = "0";
-    var one = "1";
-    var results = [];
-    // r > l
-    for (var i = l; i < (r + 1 ); i++) {
+  let R = S1.reverse();
+  let r = R.join("");
+  var results = [];
 
-        for (var j = l; j < (r + 1); j++) {
+  for (var i = 0; i < S.length; i++) {
+    if (s[i + 1] !== undefined && r[i + 1] !== undefined) {
+      let n = s[i].charCodeAt(0);
+      let n1 = s[i + 1].charCodeAt(0);
 
-            results.push(i ^ j)
+      let o = r[i].charCodeAt(0);
+      let o1 = r[i + 1].charCodeAt(0);
 
+      if (n1 !== NaN && o1 !== NaN) {
+        let l = Math.abs(n - n1);
+        let l1 = Math.abs(o - o1);
+
+        if (l === l1) {
+          results.push(1);
+        } else {
+          return "Not Funny";
         }
-
+      }
     }
+  }
 
-    var n = results.sort((a, b) => b - a);
-    return n[0] 
+  if (results.length === S.length - 1) {
+    return "Funny";
+  }
 }
 
+// ^ operator solution
+
+function maximizingXor(l, r) {
+  var zero = "0";
+  var one = "1";
+  var results = [];
+  // r > l
+  for (var i = l; i < r + 1; i++) {
+    for (var j = l; j < r + 1; j++) {
+      results.push(i ^ j);
+    }
+  }
+
+  var n = results.sort((a, b) => b - a);
+  return n[0];
+}
 
 // non ^ operator solution
 function maximizingXor(l, r) {
-    
-    var zero = "0";
-    var one = "1";
-    var results = [];
-   
-    for (var i = l; i < (r + 1 ); i++) {
+  var zero = "0";
+  var one = "1";
+  var results = [];
 
-        for (var j = l; j < (r + 1); j++) {
+  for (var i = l; i < r + 1; i++) {
+    for (var j = l; j < r + 1; j++) {
+      var bitsI = i.toString(2);
+      var bitsJ = j.toString(2);
+      bitsI.split("");
+      bitsJ.split("");
+      var length;
 
-            var bitsI = i.toString(2);
-            var bitsJ = j.toString(2);
-            bitsI.split('');
-            bitsJ.split('')
-            var length;
-        
-            if (bitsI.length === bitsJ.length) {
-                length = bitsI.length;
-                var result = [];
-                for (var x = 0; x < length; x++) {
-                 
-                    
-        
-                       if (bitsI[x] === bitsJ[x]) { result.push(zero); }
-                    else  { result.push(one);}
-
-                } 
-                
-                let resString = result.join('');
-              
-                results.push(parseInt(resString, 2));
-
-
-            }
-
-            else {
-                //unequal variation + 1 step (max 10*3) and + 1 final result since it's doing previous max * 2 + 1 or previous max + (previous max + 1)
-                length = bitsI.length;
-                var result = [];
-                for (var x = 0; x < length + 1; x++) {
-                
-                    if (bitsI[x] === bitsJ[x]) { result.push(zero); }
-                    else { result.push(one); }
-
-                }
-                //console.log(result.join(''))
-                let resString = result.join('');
-               
-                results.push((parseInt(resString, 2) + 1));
-
-
-    
-            }
-
+      if (bitsI.length === bitsJ.length) {
+        length = bitsI.length;
+        var result = [];
+        for (var x = 0; x < length; x++) {
+          if (bitsI[x] === bitsJ[x]) {
+            result.push(zero);
+          } else {
+            result.push(one);
+          }
         }
 
-    }
+        let resString = result.join("");
 
-    var n = results.sort((a, b) => b - a);
-    return n[0] 
+        results.push(parseInt(resString, 2));
+      } else {
+        //unequal variation + 1 step (max 10*3) and + 1 final result since it's doing previous max * 2 + 1 or previous max + (previous max + 1)
+        length = bitsI.length;
+        var result = [];
+        for (var x = 0; x < length + 1; x++) {
+          if (bitsI[x] === bitsJ[x]) {
+            result.push(zero);
+          } else {
+            result.push(one);
+          }
+        }
+        //console.log(result.join(''))
+        let resString = result.join("");
+
+        results.push(parseInt(resString, 2) + 1);
+      }
+    }
+  }
+
+  var n = results.sort((a, b) => b - a);
+  return n[0];
 }
 
 function utopianTree(n) {
-    var H = 1;
-    
-    if (n === 0) { return 1 }
+  var H = 1;
 
-    else {
-        for (var i = 1; i < (n + 1); i++) {
-
-            if (i % 2 === 0) {
-                H += 1;
-
-            }
-            else if (i % 2 !== 0) {
-
-                H *= 2;
-
-            }
-
-        };
-
-
-        return H
+  if (n === 0) {
+    return 1;
+  } else {
+    for (var i = 1; i < n + 1; i++) {
+      if (i % 2 === 0) {
+        H += 1;
+      } else if (i % 2 !== 0) {
+        H *= 2;
+      }
     }
 
+    return H;
+  }
 }
 
 function hurdleRace(k, height) {
-    
-    var hurdleMaxHeight = Math.max.apply(null, height);
-    if (hurdleMaxHeight <= k) { return 0 }
-
-    else if (hurdleMaxHeight > k) {
-        var minDose = hurdleMaxHeight - k;
-        return minDose
-
-    }
+  var hurdleMaxHeight = Math.max.apply(null, height);
+  if (hurdleMaxHeight <= k) {
+    return 0;
+  } else if (hurdleMaxHeight > k) {
+    var minDose = hurdleMaxHeight - k;
+    return minDose;
+  }
 }
 
 function angryProfessor(k, a) {
-    var count = 0;
-    for (var i = 0; i < a.length; i++) {
+  var count = 0;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] < 0 || a[i] === 0) {
+      count++;
+    }
+  }
 
-        if (a[i] < 0 || a[i] === 0) { count++}
-
-    };
-    
-    if (count < k) { return 'YES' }
-    else { return 'NO'}
+  if (count < k) {
+    return "YES";
+  } else {
+    return "NO";
+  }
 }
 
 // Complete the minimumBribes function below.
